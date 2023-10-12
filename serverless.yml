@@ -1,0 +1,27 @@
+org: kevinthenet
+app: castro-home-builders
+service: castro-home-builders
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+custom:
+  secrets: ${ssm:/aws/reference/secretsmanager/castro-home-builders-serverless}
+
+functions:
+  webhook-listener:
+    handler: handler.webhookListener
+    environment:
+      MONDAY_PERSONAL_API_KEY: ${self:custom.secrets.mondayPersonalApiKey}
+      MAILCHIMP_API_KEY: ${self:custom.secrets.mailchimpApiKey}
+      MAILCHIMP_SERVER_PREFIX: ${self:custom.secrets.mailchimpServerPrefix}
+      MANDRILL_API_KEY: ${self:custom.secrets.mandrillApiKey}
+    events:
+      - httpApi:
+          path: /
+          method: post
+
+plugins:
+  - serverless-plugin-typescript

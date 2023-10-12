@@ -1,0 +1,20 @@
+{
+  "name": "castro-home-builders-serverless",
+  "description": "Serverless functions for Castro Home Builders",
+  "version": "1.0.0",
+  "scripts": {
+    "local:invoke": "serverless invoke local"
+  },
+  "dependencies": {
+    "@mailchimp/mailchimp_transactional": "^1.0.50",
+    "graphql-request": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.101",
+    "@types/mailchimp__mailchimp_transactional": "^1.0.6",
+    "serverless": "^3.21.0",
+    "serverless-offline": "^9.1.6",
+    "serverless-plugin-typescript": "^2.1.2",
+    "typescript": "^4.7.4"
+  }
+}
